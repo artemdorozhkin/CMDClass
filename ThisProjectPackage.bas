@@ -1,6 +1,6 @@
-﻿'@Folder "CMDClassProject"
+﻿'@Folder "CmdIwiProject"
 
-'@name: "CMDClass"
+'@name: "CmdIwi"
 '@author: "artem.dorozhkin"
 '@version: "1.0.0"
 '@description: "Класс для удобной работы с консолью cmd."
