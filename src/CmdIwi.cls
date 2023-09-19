@@ -1,6 +1,6 @@
 ﻿VERSION 1.0 CLASS
 BEGIN
-  MultiUse = -1  'True
+MultiUse = -1  'True
 END
 Attribute VB_Name = "CmdIwi"
 Attribute VB_GlobalNameSpace = False
@@ -11,9 +11,9 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Type TCmdIwi
-    Shell As Object
-    CurrentDir As String
-    Value As String
+Shell As Object
+CurrentDir As String
+Value As String
 End Type
 
 Private this As TCmdIwi
@@ -24,11 +24,11 @@ End Sub
 
 '@DefaultMember
 Public Property Get Value() As String
-    Attribute Value.VB_UserMemId = 0
-    Value = this.Value
+Attribute Value.VB_UserMemId = 0
+Value = this.Value
 End Property
 
-Public Function Exec(ByVal Command As String) As CmdIwi
+Public Function Exec(Byval Command As String) As CmdIwi
     Const CMDCommand As String = "cmd /c "
     SetValue this.Shell.Exec(CMDCommand & Command).StdOut.ReadAll()
     Debug.Print this.Value
@@ -36,7 +36,7 @@ Public Function Exec(ByVal Command As String) As CmdIwi
     Set Exec = Me
 End Function
 
-Public Function CD(Optional ByVal Path As String = ".") As CmdIwi
+Public Function CD(Optional Byval Path As String = ".") As CmdIwi
     If Left(Path, 1) = "%" And Right(Path, 1) = "%" Then
         Path = this.Shell.ExpandEnvironmentStrings(Path)
     End If
@@ -45,12 +45,12 @@ Public Function CD(Optional ByVal Path As String = ".") As CmdIwi
     Set CD = Me
 End Function
 
-Public Function MkDir(ByVal FolderName As String) As CmdIwi
+Public Function MkDir(Byval FolderName As String) As CmdIwi
     Exec "mkdir """ & FolderName & """"
     Set MkDir = Me
 End Function
 
-Public Function RmDir(ByVal FolderName As String) As CmdIwi
+Public Function RmDir(Byval FolderName As String) As CmdIwi
     Exec "rmdir """ & FolderName & """"
     Set RmDir = Me
 End Function
@@ -64,32 +64,32 @@ Public Function LS() As CmdIwi
     Set LS = Me.Dir()
 End Function
 
-Public Function Copy(ByVal SourceFile As String, ByVal DestinationFolder As String) As CmdIwi
+Public Function Copy(Byval SourceFile As String, Byval DestinationFolder As String) As CmdIwi
     Exec "copy """ & SourceFile & """ """ & DestinationFolder & """"
     Set Copy = Me
 End Function
 
-Public Function Del(ByVal FileName As String) As CmdIwi
+Public Function Del(Byval FileName As String) As CmdIwi
     Exec "del """ & FileName & """"
     Set Del = Me
 End Function
 
-Public Function Move(ByVal SourceFile As String, ByVal DestinationFolder As String) As CmdIwi
+Public Function Move(Byval SourceFile As String, Byval DestinationFolder As String) As CmdIwi
     Exec "move """ & SourceFile & """ """ & DestinationFolder & """"
     Set Move = Me
 End Function
 
-Public Function Rename(ByVal OldName As String, ByVal NewName As String) As CmdIwi
+Public Function Rename(Byval OldName As String, Byval NewName As String) As CmdIwi
     Exec "ren """ & OldName & """ """ & NewName & """"
     Set Rename = Me
 End Function
 
-Public Function TypeFile(ByVal FileName As String) As CmdIwi
+Public Function Type_(Byval FileName As String) As CmdIwi
     Exec "type """ & FileName & """"
-    Set TypeFile = Me
+    Set Type_ = Me
 End Function
 
-Public Function Touch(ByVal FileName As String, Optional ByVal Text As String = "NULL") As CmdIwi
+Public Function Touch(Byval FileName As String, Optional Byval Text As String = "NULL") As CmdIwi
     If Text <> "NULL" Then
         Exec "echo " & Text & ">" & FileName
     Else
@@ -98,12 +98,12 @@ Public Function Touch(ByVal FileName As String, Optional ByVal Text As String = 
     Set Touch = Me
 End Function
 
-Public Function Echo(Optional ByVal Text As String) As CmdIwi
+Public Function Echo(Optional Byval Text As String) As CmdIwi
     Exec "echo " & Text
     Set Echo = Me
 End Function
 
-Public Function Start(ByVal Source As String) As CmdIwi
+Public Function Start(Byval Source As String) As CmdIwi
     Exec "start " & Source
     Set Start = Me
 End Function
@@ -123,7 +123,7 @@ Public Function Regedit() As CmdIwi
     Set Regedit = Me
 End Function
 
-Public Function Ping(ByVal Target As String) As CmdIwi
+Public Function Ping(Byval Target As String) As CmdIwi
     Exec "ping " & Target
     Set Ping = Me
 End Function
@@ -146,7 +146,7 @@ Public Sub Cls()
     Me.Clear
 End Sub
 
-Private Sub SetValue(ByVal Value As String)
+Private Sub SetValue(Byval Value As String)
     Dim Stream As Object: Set Stream = CreateObject("ADODB.Stream")
 
     With Stream
