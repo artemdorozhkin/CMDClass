@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "indexCmdIwi"
+Attribute VB_Name = "indexCmdIwi"
 '@Folder "CmdIwiProject.src"
 Option Explicit
 
